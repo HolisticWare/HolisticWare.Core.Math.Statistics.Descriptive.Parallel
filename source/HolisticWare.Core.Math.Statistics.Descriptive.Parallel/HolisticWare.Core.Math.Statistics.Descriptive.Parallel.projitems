@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{920D7D0F-3FAE-4C77-9174-23E7A4E80E50}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Core.Math.Statistics.Descriptive.Parallel</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\IEnumerableExtensions.Correlation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\IEnumerableExtensions.Covariance.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\IEnumerableExtensions.Frequencies.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\IEnumerableExtensions.FrequencyDistribution.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\IEnumerableExtensions.FStatistic.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\IEnumerableExtensions.Kurtosis.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\IEnumerableExtensions.KurtosisExcess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\IEnumerableExtensions.KurtosisSampleExcess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\IEnumerableExtensions.MeanArithmetic.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\IEnumerableExtensions.MeanGeometric.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\IEnumerableExtensions.Median.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\IEnumerableExtensions.Modes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\IEnumerableExtensions.Moment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\IEnumerableExtensions.Range.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\IEnumerableExtensions.Skewness.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\IEnumerableExtensions.StandardDeviationPopulation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\IEnumerableExtensions.StandardDeviationSample.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\IEnumerableExtensions.StudenttStatisticIndependent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\IEnumerableExtensions.VariancePopulation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\IEnumerableExtensions.VarianceSample.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\IEnumerableExtensions.WelchtStatistic.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.Frequencies.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.FrequencyDistributions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.Modes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.Corellation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.Covariance.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.FStatistics.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.Kurtosis.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.KurtosisExcess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.KurtosisSampleExcess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.MeanArithmetic.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.MeanGeometric.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.Median.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.Moment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.Range.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.StandardDeviationPopulation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.Skewness.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.StandardDeviationSample.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.StudentStatisticIdenpendent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.VariancePopulation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.VarianceSample.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.WelchStatistics.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)readme.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Async\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Parallel\" />
+  </ItemGroup>
+</Project>

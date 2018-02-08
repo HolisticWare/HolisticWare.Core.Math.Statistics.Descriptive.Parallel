@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <RootNamespace>Core.Math.Statistics.Descriptive.Parallel</RootNamespace>
+    <AssemblyName>HolisticWare.Core.Math.Statistics.Descriptive.Parallel</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.ValueTuple" Version="4.4.0" />
+    <PackageReference Include="System.Linq.Parallel" Version="4.3.0" />
+    <PackageReference Include="System.Collections.NonGeneric" Version="4.3.0" />
+    <PackageReference Include="System.Threading.Tasks.Parallel" Version="4.3.0" />
+  </ItemGroup>
+    
+  <Import Project="..\HolisticWare.Core.Math.Statistics.Descriptive.Parallel\HolisticWare.Core.Math.Statistics.Descriptive.Parallel.projitems" Label="Shared" Condition="Exists('..\HolisticWare.Core.Math.Statistics.Descriptive.Parallel\HolisticWare.Core.Math.Statistics.Descriptive.Parallel.projitems')" />
+</Project>
