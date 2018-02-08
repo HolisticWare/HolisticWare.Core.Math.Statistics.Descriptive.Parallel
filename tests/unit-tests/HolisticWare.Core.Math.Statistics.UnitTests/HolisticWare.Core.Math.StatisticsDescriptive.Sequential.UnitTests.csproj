@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{04F3D823-ABEA-46DD-9EC2-56C08CA074DB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>HolisticWare.Core.Math.Statistics.UnitTests</RootNamespace>
+    <AssemblyName>HolisticWare.Core.Math.Statistics.UnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.3.9.0\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.NonGeneric">
+      <HintPath>..\packages\System.Collections.NonGeneric.4.3.0\lib\net46\System.Collections.NonGeneric.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="System.ValueTuple">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Tests01MeanAverage.cs" />
+    <Compile Include="Tests02Frequencies.cs" />
+    <Compile Include="Tests03Mode.cs" />
+    <Compile Include="DarkVaderTests\TestsModes20180119.cs" />
+    <Compile Include="DarkVaderTests\TestsFrequencies20180119.cs" />
+    <Compile Include="DarkVaderTests\TestsFrequencyDistribution20180120.cs" />
+    <Compile Include="KIF.Handbook.QuantitiativeMethods\Tests03Page95DescriptiveAnalysis.cs" />
+    <Compile Include="DarkVaderTests\My_UT.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <!--
+  ==================================================================================================
+  If projects for references can be found use ProjectReferences otherwise use NuGet references
+  http://laurentkempe.com/2009/12/03/ProjectReference-with-Condition-in-your-MSBuild-project-files/
+  msbuild Choose When ProjectReference Reference Include
+  -->
+  <ItemGroup>
+    <Folder Include="DarkVaderTests\" />
+    <Folder Include="KIF.Handbook.QuantitiativeMethods\" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="! exists('..\..\..\source\HolisticWare.Core.Math.Statistics.NetStandard10\HolisticWare.Core.Math.Statistics.NetStandard10.csproj')">
+      <!-- nuget packages (dll) refs -->
+      <ItemGroup>
+        <Reference Include="HolisticWare.Core.Math.Statistics  NuGet Bait-n-Switch">
+          <HintPath>..\packages\HolisticWare.Core.Math.Statistics.2017.12.16\lib\netstandard1.1\HolisticWare.Core.Math.Statistics.dll</HintPath>
+          <Name>Xamarin.Auth.UniversalWindowsPlatfrom NuGet Bait-n-Switch</Name>
+        </Reference>
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <!-- project refs -->
+      <ItemGroup>
+        <ProjectReference Include="..\..\..\source\HolisticWare.Core.Math.Statistics.NetStandard10\HolisticWare.Core.Math.Statistics.NetStandard10.csproj">
+          <Project>{0FDC898E-8741-4788-B648-29D82717111C}</Project>
+          <Name>HolisticWare.Core.Math.StatisticsDescriptive.Sequential.NetStandard10</Name>
+        </ProjectReference>
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <!--
+  If projects for references can be found use ProjectReferences otherwise use NuGet references
+  ==================================================================================================
+  -->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
