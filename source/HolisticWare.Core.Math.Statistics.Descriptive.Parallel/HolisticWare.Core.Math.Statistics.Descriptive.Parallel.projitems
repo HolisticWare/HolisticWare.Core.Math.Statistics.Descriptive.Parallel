@@ -53,6 +53,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.WelchStatistics.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.CorrelationOptimized.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Parallel\IEnumerableExtensions.CorrelationOptimized.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\IEnumerableExtensions.FrequencyCounter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.FrequencyCounter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)readme.md" />
