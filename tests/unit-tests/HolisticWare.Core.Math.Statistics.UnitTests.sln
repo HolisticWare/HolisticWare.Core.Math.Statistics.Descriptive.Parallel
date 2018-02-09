@@ -5,19 +5,11 @@ VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "library-source", "library-source", "{56123580-99E9-45AC-8300-ABF8EE1D021E}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HolisticWare.Core.Math.StatisticsDescriptive.Sequential", "..\..\source\HolisticWare.Core.Math.Statistics\HolisticWare.Core.Math.StatisticsDescriptive.Sequential.shproj", "{920D7D0F-3FAE-4C77-9174-23E7A4E80E50}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HolisticWare.Core.Math.StatisticsDescriptive.Sequential.NetStandard10", "..\..\source\HolisticWare.Core.Math.Statistics.NetStandard10\HolisticWare.Core.Math.StatisticsDescriptive.Sequential.NetStandard10.csproj", "{0FDC898E-8741-4788-B648-29D82717111C}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nunit", "nunit", "{1F3FDAF9-6319-4A3A-AF61-56DC82305EDD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xunit", "xunit", "{B1FC9A26-F8DF-49D3-9E01-31CCE984D511}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HolisticWare.Core.Math.StatisticsDescriptive.Sequential.UnitTests", "HolisticWare.Core.Math.Statistics.UnitTests\HolisticWare.Core.Math.StatisticsDescriptive.Sequential.UnitTests.csproj", "{04F3D823-ABEA-46DD-9EC2-56C08CA074DB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HolisticWare.Core.Math.StatisticsDescriptive.Sequential.NetStandard11", "..\..\source\HolisticWare.Core.Math.Statistics.NetStandard11\HolisticWare.Core.Math.StatisticsDescriptive.Sequential.NetStandard11.csproj", "{CD938BC0-F4E0-4B59-B585-B32455B45134}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HolisticWare.Core.Math.StatisticsDescriptive.Sequential.NetStandard13", "..\..\source\HolisticWare.Core.Math.Statistics.NetStandard13\HolisticWare.Core.Math.StatisticsDescriptive.Sequential.NetStandard13.csproj", "{94556D18-12E1-4F97-AFD7-898DA7035D51}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -28,32 +20,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0FDC898E-8741-4788-B648-29D82717111C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0FDC898E-8741-4788-B648-29D82717111C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0FDC898E-8741-4788-B648-29D82717111C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0FDC898E-8741-4788-B648-29D82717111C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{04F3D823-ABEA-46DD-9EC2-56C08CA074DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{04F3D823-ABEA-46DD-9EC2-56C08CA074DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04F3D823-ABEA-46DD-9EC2-56C08CA074DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04F3D823-ABEA-46DD-9EC2-56C08CA074DB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CD938BC0-F4E0-4B59-B585-B32455B45134}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CD938BC0-F4E0-4B59-B585-B32455B45134}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CD938BC0-F4E0-4B59-B585-B32455B45134}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CD938BC0-F4E0-4B59-B585-B32455B45134}.Release|Any CPU.Build.0 = Release|Any CPU
-		{94556D18-12E1-4F97-AFD7-898DA7035D51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{94556D18-12E1-4F97-AFD7-898DA7035D51}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{94556D18-12E1-4F97-AFD7-898DA7035D51}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{94556D18-12E1-4F97-AFD7-898DA7035D51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{920D7D0F-3FAE-4C77-9174-23E7A4E80E50} = {56123580-99E9-45AC-8300-ABF8EE1D021E}
-		{0FDC898E-8741-4788-B648-29D82717111C} = {56123580-99E9-45AC-8300-ABF8EE1D021E}
 		{04F3D823-ABEA-46DD-9EC2-56C08CA074DB} = {1F3FDAF9-6319-4A3A-AF61-56DC82305EDD}
-		{CD938BC0-F4E0-4B59-B585-B32455B45134} = {56123580-99E9-45AC-8300-ABF8EE1D021E}
-		{94556D18-12E1-4F97-AFD7-898DA7035D51} = {56123580-99E9-45AC-8300-ABF8EE1D021E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC1968CA-A163-4F46-9E24-814C893F78B0}
