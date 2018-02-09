@@ -26,7 +26,7 @@ namespace Core.Math.Statistics.Descriptive.Sequential
                             n,
                             i =>
                             {
-                                object x_i = x.ElementAt((int)i);
+                                object x_i = x[(int)i];
                                 if (frequencies.ContainsKey(x_i))
                                 {
                                     frequencies[x_i] += 1;

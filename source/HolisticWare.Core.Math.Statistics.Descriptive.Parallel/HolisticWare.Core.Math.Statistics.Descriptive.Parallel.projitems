@@ -51,6 +51,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.VariancePopulation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.VarianceSample.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.WelchStatistics.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\ArrayList\IEnumerableExtensions.CorrelationOptimized.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parallel\IEnumerableExtensions.CorrelationOptimized.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)readme.md" />

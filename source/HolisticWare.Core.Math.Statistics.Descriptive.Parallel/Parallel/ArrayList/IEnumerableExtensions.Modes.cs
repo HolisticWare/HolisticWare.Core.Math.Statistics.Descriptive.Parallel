@@ -19,7 +19,7 @@ namespace Core.Math.Statistics.Descriptive.Sequential
 
             System.Collections.ArrayList modes = new System.Collections.ArrayList();
 
-            uint occurences = ((KeyValuePair<object, uint>)frequencies?.ElementAt(0)).Value;
+            uint occurences = ((KeyValuePair<object, uint>) frequencies?.ElementAt(0)).Value;
 
             foreach (KeyValuePair<object, uint> kvp in frequencies)
             {
