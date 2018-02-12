@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Linq;
 
 using Core.Math.Statistics;
@@ -11,11 +12,13 @@ namespace Core.Math.Statistics.Descriptive.Parallel
     /// </summary>
     public static class IEnumerableExtensionsFrequencyCounter
     {
-        public static Dictionary<T, uint> FrequencyCounter<T>(this IEnumerable<T> x)
+        public static ConcurrentDictionary<T, uint> FrequencyCounter<T>(this IEnumerable<T> x)
         {
             long n = x.LongCount();
 
-            Dictionary<T, uint> frequencies = new Dictionary<T, uint>((int)n);
+            ParallelQuery<T> pq = x.AsParallel();
+
+            ConcurrentDictionary<T, uint> frequencies = new ConcurrentDictionary<T, uint>();
 
             //for (int i = 0; i < n; i++)
             System.Threading.Tasks.Parallel.For
@@ -25,25 +28,42 @@ namespace Core.Math.Statistics.Descriptive.Parallel
                             i =>
                             {
                                 T x_i = x.ElementAt((int)i);
-                                if (frequencies.ContainsKey(x_i))
-                                {
-                                    frequencies[x_i] += 1;
-                                }
-                                else
-                                {
-                                    frequencies.Add(x_i, 1);
-                                }
+
+                                CalculateFrequencyAdd(frequencies, x_i);
                             }
                         );
             
             return frequencies;
         }
 
-        public static Dictionary<ushort, uint> FrequencyCounter(this IEnumerable<ushort> x)
+        public static void CalculateFrequencyAdd<T>(ConcurrentDictionary<T, uint> frequencies, T x)
+        {
+            if (!frequencies.TryAdd(x, 1))
+            {
+                CalculateFrequencyUpdate(frequencies, x);
+            }
+
+            return;
+        }
+
+        public static void CalculateFrequencyUpdate<T>(ConcurrentDictionary<T, uint> frequencies, T x)
+        {
+            uint frequency = frequencies[x];
+            if (!frequencies.TryUpdate(x, frequency + 1, frequency))
+            {
+                CalculateFrequencyUpdate(frequencies, x);
+            }
+
+            return;
+        }
+
+        public static ConcurrentDictionary<ushort, uint> FrequencyCounter(this IEnumerable<ushort> x)
         {
             long n = x.LongCount();
 
-            Dictionary<ushort, uint> frequencies = new Dictionary<ushort, uint>((int)n);
+            ParallelQuery<ushort> pq = x.AsParallel();
+
+            ConcurrentDictionary<ushort, uint> frequencies = new ConcurrentDictionary<ushort, uint>();
 
             //for (int i = 0; i < n; i++)
             System.Threading.Tasks.Parallel.For
@@ -53,24 +73,40 @@ namespace Core.Math.Statistics.Descriptive.Parallel
                             i =>
                             {
                                 ushort x_i = x.ElementAt((int)i);
-                                if (frequencies.ContainsKey(x_i))
-                                {
-                                    frequencies[x_i] += 1;
-                                }
-                                else
-                                {
-                                    frequencies.Add(x_i, 1);
-                                }
+
+                                CalculateFrequencyAdd(frequencies, x_i);
                             }
                         );
+            
             return frequencies;
         }
 
-        public static Dictionary<short, uint> FrequencyCounter(this IEnumerable<short> x)
+        public static void CalculateFrequencyAdd(ConcurrentDictionary<ushort, uint> frequencies, ushort x)
+        {
+            if (!frequencies.TryAdd(x, 1))
+            {
+                CalculateFrequencyUpdate(frequencies, x);
+            }
+
+            return;
+        }
+
+        public static void CalculateFrequencyUpdate(ConcurrentDictionary<ushort, uint> frequencies, ushort x)
+        {
+            uint frequency = frequencies[x];
+            if (!frequencies.TryUpdate(x, frequency + 1, frequency))
+            {
+                CalculateFrequencyUpdate(frequencies, x);
+            }
+
+            return;
+        }
+
+        public static ConcurrentDictionary<short, uint> FrequencyCounter(this IEnumerable<short> x)
         {
             long n = x.LongCount();
 
-            Dictionary<short, uint> frequencies = new Dictionary<short, uint>((int)n);
+            ConcurrentDictionary<short, uint> frequencies = new ConcurrentDictionary<short, uint>();
 
             //for (int i = 0; i < n; i++)
             System.Threading.Tasks.Parallel.For
@@ -80,46 +116,84 @@ namespace Core.Math.Statistics.Descriptive.Parallel
                             i =>
                             {
                                 short x_i = x.ElementAt((int)i);
-                                if (frequencies.ContainsKey(x_i))
-                                {
-                                    frequencies[x_i] += 1;
-                                }
-                                else
-                                {
-                                    frequencies.Add(x_i, 1);
-                                }
+                                
+                                CalculateFrequencyAdd(frequencies, x_i);
                             }
                         );
+
             return frequencies;
         }
 
-        public static Dictionary<int, uint> FrequencyCounter(this IEnumerable<int> x)
+        public static void CalculateFrequencyAdd(ConcurrentDictionary<short, uint> frequencies, short x)
         {
-            long n = x.LongCount();
-
-            Dictionary<int, uint> frequencies = new Dictionary<int, uint>((int)n);
-
-            for (int i = 0; i < n; i++)
+            if (!frequencies.TryAdd(x, 1))
             {
-                int x_i = x.ElementAt(i);
-                if (frequencies.ContainsKey(x_i))
-                {
-                    frequencies[x_i] += 1;
-                }
-                else
-                {
-                    frequencies.Add(x_i, 1);
-                }
+                CalculateFrequencyUpdate(frequencies, x);
             }
 
-            return frequencies;
+            return;
         }
 
-        public static Dictionary<uint, uint> FrequencyCounter(this IEnumerable<uint> x)
+        public static void CalculateFrequencyUpdate(ConcurrentDictionary<short, uint> frequencies, short x)
+        {
+            uint frequency = frequencies[x];
+            if (!frequencies.TryUpdate(x, frequency + 1, frequency))
+            {
+                CalculateFrequencyUpdate(frequencies, x);
+            }
+
+            return;
+        }
+
+        public static ConcurrentDictionary<int, uint> FrequencyCounter(this IEnumerable<int> x)
         {
             long n = x.LongCount();
 
-            Dictionary<uint, uint> frequencies = new Dictionary<uint, uint>((int)n);
+            ParallelQuery<int> pq = x.AsParallel();
+
+            ConcurrentDictionary<int, uint> frequencies = new ConcurrentDictionary<int, uint>();
+
+            System.Threading.Tasks.Parallel.For
+                        (
+                            0,
+                            n,
+                            i =>
+                            {
+                                int x_i = x.ElementAt((int)i);
+
+                                CalculateFrequencyAdd(frequencies, x_i);
+                            }
+                        );
+
+            return frequencies;
+        }
+
+        public static void CalculateFrequencyAdd(ConcurrentDictionary<int, uint> frequencies, int x)
+        {
+            if (!frequencies.TryAdd(x, 1))
+            {
+                CalculateFrequencyUpdate(frequencies, x);
+            }
+
+            return;
+        }
+
+        public static void CalculateFrequencyUpdate(ConcurrentDictionary<int, uint> frequencies, int x)
+        {
+            uint frequency = frequencies[x];
+            if (!frequencies.TryUpdate(x, frequency + 1, frequency))
+            {
+                CalculateFrequencyUpdate(frequencies, x);
+            }
+
+            return;
+        }
+
+        public static ConcurrentDictionary<uint, uint> FrequencyCounter(this IEnumerable<uint> x)
+        {
+            long n = x.LongCount();
+
+            ConcurrentDictionary<uint, uint> frequencies = new ConcurrentDictionary<uint, uint>();
 
             //for (int i = 0; i < n; i++)
             System.Threading.Tasks.Parallel.For
@@ -129,24 +203,40 @@ namespace Core.Math.Statistics.Descriptive.Parallel
                             i =>
                             {
                                 uint x_i = x.ElementAt((int)i);
-                                if (frequencies.ContainsKey(x_i))
-                                {
-                                    frequencies[x_i] += 1;
-                                }
-                                else
-                                {
-                                    frequencies.Add(x_i, 1);
-                                }
+
+                                CalculateFrequencyAdd(frequencies, x_i);
                             }
                         );
+
             return frequencies;
         }
 
-        public static Dictionary<long, uint> FrequencyCounter(this IEnumerable<long> x)
+        public static void CalculateFrequencyAdd(ConcurrentDictionary<uint, uint> frequencies, uint x)
+        {
+            if (!frequencies.TryAdd(x, 1))
+            {
+                CalculateFrequencyUpdate(frequencies, x);
+            }
+
+            return;
+        }
+
+        public static void CalculateFrequencyUpdate(ConcurrentDictionary<uint, uint> frequencies, uint x)
+        {
+            uint frequency = frequencies[x];
+            if (!frequencies.TryUpdate(x, frequency + 1, frequency))
+            {
+                CalculateFrequencyUpdate(frequencies, x);
+            }
+
+            return;
+        }
+
+        public static ConcurrentDictionary<long, uint> FrequencyCounter(this IEnumerable<long> x)
         {
             long n = x.LongCount();
 
-            Dictionary<long, uint> frequencies = new Dictionary<long, uint>((int)n);
+            ConcurrentDictionary<long, uint> frequencies = new ConcurrentDictionary<long, uint>();
 
             //for (int i = 0; i < n; i++)
             System.Threading.Tasks.Parallel.For
@@ -156,24 +246,40 @@ namespace Core.Math.Statistics.Descriptive.Parallel
                             i =>
                             {
                                 long x_i = x.ElementAt((int)i);
-                                if (frequencies.ContainsKey(x_i))
-                                {
-                                    frequencies[x_i] += 1;
-                                }
-                                else
-                                {
-                                    frequencies.Add(x_i, 1);
-                                }
+
+                                CalculateFrequencyAdd(frequencies, x_i);
                             }
                         );
+
             return frequencies;
         }
 
-        public static Dictionary<ulong, uint> FrequencyCounter(this IEnumerable<ulong> x)
+        public static void CalculateFrequencyAdd(ConcurrentDictionary<long, uint> frequencies, long x)
+        {
+            if (!frequencies.TryAdd(x, 1))
+            {
+                CalculateFrequencyUpdate(frequencies, x);
+            }
+
+            return;
+        }
+
+        public static void CalculateFrequencyUpdate(ConcurrentDictionary<long, uint> frequencies, long x)
+        {
+            uint frequency = frequencies[x];
+            if (!frequencies.TryUpdate(x, frequency + 1, frequency))
+            {
+                CalculateFrequencyUpdate(frequencies, x);
+            }
+
+            return;
+        }
+
+        public static ConcurrentDictionary<ulong, uint> FrequencyCounter(this IEnumerable<ulong> x)
         {
             long n = x.LongCount();
 
-            Dictionary<ulong, uint> frequencies = new Dictionary<ulong, uint>((int)n);
+            ConcurrentDictionary<ulong, uint> frequencies = new ConcurrentDictionary<ulong, uint>();
 
             //for (int i = 0; i < n; i++)
             System.Threading.Tasks.Parallel.For
@@ -183,46 +289,82 @@ namespace Core.Math.Statistics.Descriptive.Parallel
                             i =>
                             {
                                 ulong x_i = x.ElementAt((int)i);
-                                if (frequencies.ContainsKey(x_i))
-                                {
-                                    frequencies[x_i] += 1;
-                                }
-                                else
-                                {
-                                    frequencies.Add(x_i, 1);
-                                }
+
+                                CalculateFrequencyAdd(frequencies, x_i);
                             }
                         );
+
             return frequencies;
         }
 
-        public static Dictionary<float, uint> FrequencyCounter(this IEnumerable<float> x)
+        public static void CalculateFrequencyAdd(ConcurrentDictionary<ulong, uint> frequencies, ulong x)
         {
-            long n = x.LongCount();
-
-            Dictionary<float, uint> frequencies = new Dictionary<float, uint>((int)n);
-
-            for (int i = 0; i < n; i++)
+            if (!frequencies.TryAdd(x, 1))
             {
-                float x_i = x.ElementAt(i);
-                if (frequencies.ContainsKey(x_i))
-                {
-                    frequencies[x_i] += 1;
-                }
-                else
-                {
-                    frequencies.Add(x_i, 1);
-                }
+                CalculateFrequencyUpdate(frequencies, x);
             }
 
-            return frequencies;
+            return;
         }
 
-        public static Dictionary<double, uint> FrequencyCounter(this IEnumerable<double> x)
+        public static void CalculateFrequencyUpdate(ConcurrentDictionary<ulong, uint> frequencies, ulong x)
+        {
+            uint frequency = frequencies[x];
+            if (!frequencies.TryUpdate(x, frequency + 1, frequency))
+            {
+                CalculateFrequencyUpdate(frequencies, x);
+            }
+
+            return;
+        }
+
+        public static ConcurrentDictionary<float, uint> FrequencyCounter(this IEnumerable<float> x)
         {
             long n = x.LongCount();
 
-            Dictionary<double, uint> frequencies = new Dictionary<double, uint>((int)n);
+            ConcurrentDictionary<float, uint> frequencies = new ConcurrentDictionary<float, uint>();
+
+            System.Threading.Tasks.Parallel.For
+                        (
+                            0,
+                            n,
+                            i =>
+                            {
+                                float x_i = x.ElementAt((int)i);
+
+                                CalculateFrequencyAdd(frequencies, x_i);
+                            }
+                        );
+
+            return frequencies;
+        }
+
+        public static void CalculateFrequencyAdd(ConcurrentDictionary<float, uint> frequencies, float x)
+        {
+            if (!frequencies.TryAdd(x, 1))
+            {
+                CalculateFrequencyUpdate(frequencies, x);
+            }
+
+            return;
+        }
+
+        public static void CalculateFrequencyUpdate(ConcurrentDictionary<float, uint> frequencies, float x)
+        {
+            uint frequency = frequencies[x];
+            if (!frequencies.TryUpdate(x, frequency + 1, frequency))
+            {
+                CalculateFrequencyUpdate(frequencies, x);
+            }
+
+            return;
+        }
+
+        public static ConcurrentDictionary<double, uint> FrequencyCounter(this IEnumerable<double> x)
+        {
+            long n = x.LongCount();
+
+            ConcurrentDictionary<double, uint> frequencies = new ConcurrentDictionary<double, uint>();
 
             //for (int i = 0; i < n; i++)
             System.Threading.Tasks.Parallel.For
@@ -232,25 +374,40 @@ namespace Core.Math.Statistics.Descriptive.Parallel
                             i =>
                             {
                                 double x_i = x.ElementAt((int)i);
-                                if (frequencies.ContainsKey(x_i))
-                                {
-                                    frequencies[x_i] += 1;
-                                }
-                                else
-                                {
-                                    frequencies.Add(x_i, 1);
-                                }
+
+                                CalculateFrequencyAdd(frequencies, x_i);
                             }
                         );
-            
+
             return frequencies;
         }
 
-        public static Dictionary<decimal, uint> FrequencyCounter(this IEnumerable<decimal> x)
+        public static void CalculateFrequencyAdd(ConcurrentDictionary<double, uint> frequencies, double x)
+        {
+            if (!frequencies.TryAdd(x, 1))
+            {
+                CalculateFrequencyUpdate(frequencies, x);
+            }
+
+            return;
+        }
+
+        public static void CalculateFrequencyUpdate(ConcurrentDictionary<double, uint> frequencies, double x)
+        {
+            uint frequency = frequencies[x];
+            if (!frequencies.TryUpdate(x, frequency + 1, frequency))
+            {
+                CalculateFrequencyUpdate(frequencies, x);
+            }
+
+            return;
+        }
+
+        public static ConcurrentDictionary<decimal, uint> FrequencyCounter(this IEnumerable<decimal> x)
         {
             long n = x.LongCount();
 
-            Dictionary<decimal, uint> frequencies = new Dictionary<decimal, uint>((int)n);
+            ConcurrentDictionary<decimal, uint> frequencies = new ConcurrentDictionary<decimal, uint>();
 
             //for (int i = 0; i < n; i++)
             System.Threading.Tasks.Parallel.For
@@ -260,17 +417,34 @@ namespace Core.Math.Statistics.Descriptive.Parallel
                             i =>
                             {
                                 decimal x_i = x.ElementAt((int)i);
-                                if (frequencies.ContainsKey(x_i))
-                                {
-                                    frequencies[x_i] += 1;
-                                }
-                                else
-                                {
-                                    frequencies.Add(x_i, 1);
-                                }
+
+                                CalculateFrequencyAdd(frequencies, x_i);
                             }
                         );
+
             return frequencies;
         }
+
+        public static void CalculateFrequencyAdd(ConcurrentDictionary<decimal, uint> frequencies, decimal x)
+        {
+            if (!frequencies.TryAdd(x, 1))
+            {
+                CalculateFrequencyUpdate(frequencies, x);
+            }
+
+            return;
+        }
+
+        public static void CalculateFrequencyUpdate(ConcurrentDictionary<decimal, uint> frequencies, decimal x)
+        {
+            uint frequency = frequencies[x];
+            if (!frequencies.TryUpdate(x, frequency + 1, frequency))
+            {
+                CalculateFrequencyUpdate(frequencies, x);
+            }
+
+            return;
+        }
+
     }
 }
