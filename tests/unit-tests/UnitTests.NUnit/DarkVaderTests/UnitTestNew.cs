@@ -30,25 +30,22 @@ using System;
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
 
-using Core.Math.Statistics;
+using Core.Math.Statistics.Descriptive.Parallel;
 
 namespace UnitTests.HolisticWare.Core.Math.Statistics
 {
-    public partial class Tests01MeanAverage
+    public partial class UnitTestNew
     {
-        
+        Stopwatch sw = null;
+
         [Test()]
-        public void MeanAverage()
+        public void Data01()
         {
-            List<int> data01 = new List<int> { 2, 4, 3, 5, 6, 7, 4, 4, 2, 1 };
-
-            double mean01 = data01.Average();
-
-            Assert.AreEqual(3.8, mean01, 0.1);
+            Console.WriteLine("Bok ja sam DartVejderov novi test");
 
             return;
-        }
-
+        }        
     }
 }

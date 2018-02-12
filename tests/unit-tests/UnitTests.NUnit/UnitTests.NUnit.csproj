@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -46,6 +46,7 @@
     <Compile Include="DarkVaderTests\TestsFrequencyDistribution20180120.cs" />
     <Compile Include="KIF.Handbook.QuantitiativeMethods\Tests03Page95DescriptiveAnalysis.cs" />
     <Compile Include="DarkVaderTests\My_UT.cs" />
+    <Compile Include="DarkVaderTests\UnitTestNew.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -57,18 +58,18 @@
   msbuild Choose When ProjectReference Reference Include
   -->
   <ItemGroup>
-    <Folder Include="DarkVaderTests\" />
-    <Folder Include="KIF.Handbook.QuantitiativeMethods\" />
+    <ProjectReference Include="..\..\..\source\HolisticWare.Core.Math.Statistics.Descriptive.Parallel.NetStandard11\HolisticWare.Core.Math.Statistics.Descriptive.Parallel.NetStandard11.csproj">
+      <Project>{3c91dd3d-42ee-4872-a48f-315ac22781e5}</Project>
+      <Name>HolisticWare.Core.Math.Statistics.Descriptive.Parallel.NetStandard11</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\source\HolisticWare.Core.Math.Statistics.Descriptive.Parallel.NetStandard13\HolisticWare.Core.Math.Statistics.Descriptive.Parallel.NetStandard13.csproj">
+      <Project>{08b313bc-cebf-4264-9c5e-3a5d72ab299f}</Project>
+      <Name>HolisticWare.Core.Math.Statistics.Descriptive.Parallel.NetStandard13</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="! exists('..\..\..\source\HolisticWare.Core.Math.Statistics.NetStandard10\HolisticWare.Core.Math.Statistics.NetStandard10.csproj')">
       <!-- nuget packages (dll) refs -->
-      <ItemGroup>
-        <Reference Include="HolisticWare.Core.Math.Statistics  NuGet Bait-n-Switch">
-          <HintPath>..\packages\HolisticWare.Core.Math.Statistics.2017.12.16\lib\netstandard1.1\HolisticWare.Core.Math.Statistics.dll</HintPath>
-          <Name>Xamarin.Auth.UniversalWindowsPlatfrom NuGet Bait-n-Switch</Name>
-        </Reference>
-      </ItemGroup>
     </When>
     <Otherwise>
       <!-- project refs -->

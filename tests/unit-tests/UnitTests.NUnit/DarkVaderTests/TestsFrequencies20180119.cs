@@ -31,7 +31,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using Core.Math.Statistics;
+using Core.Math.Statistics.Descriptive.Parallel;
 
 namespace UnitTests.HolisticWare.Core.Math.Statistics
 {
@@ -84,7 +84,7 @@ namespace UnitTests.HolisticWare.Core.Math.Statistics
             IEnumerable<KeyValuePair<double, uint>> frequencies01 = data01.Frequencies();
 
             // Assert
-            Assert.AreEqual
+            CollectionAssert.AreEquivalent
                         (
                             new Dictionary<double, uint>
                                 {                
@@ -166,7 +166,7 @@ namespace UnitTests.HolisticWare.Core.Math.Statistics
             IEnumerable<KeyValuePair<int, uint>> frequencies01 = data01.Frequencies();
 
             // Assert
-            Assert.AreEqual
+            CollectionAssert.AreEquivalent
                         (
                             new Dictionary<int, uint>
                                 {

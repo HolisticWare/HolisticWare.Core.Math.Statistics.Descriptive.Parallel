@@ -31,7 +31,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using Core.Math.Statistics;
+using Core.Math.Statistics.Descriptive.Parallel;
 
 namespace UnitTests.HolisticWare.Core.Math.Statistics
 {
@@ -79,10 +79,11 @@ namespace UnitTests.HolisticWare.Core.Math.Statistics
             List<double> modes01 = data01.Modes();
             // Assert
             //CollectionAssert.AreEqual         // order taken into account
-                        //(
-                        //    new List<double> { 14.7, 18.2 }, 
-                        //    modes01
-                        //);
+            CollectionAssert.AreEquivalent
+                        (
+                            new List<double> { 14.7, 18.2 }, 
+                            modes01
+                        );
             CollectionAssert.AreEquivalent      // only content taken into account
                         (
                             new List<double> { 14.7, 18.2 }, 
@@ -123,7 +124,7 @@ namespace UnitTests.HolisticWare.Core.Math.Statistics
             List<int> modes01 = data01.Modes();
 
             // Assert
-            Assert.AreEqual
+            CollectionAssert.AreEquivalent
                         (
                             new List<int> { 180 }, 
                             modes01

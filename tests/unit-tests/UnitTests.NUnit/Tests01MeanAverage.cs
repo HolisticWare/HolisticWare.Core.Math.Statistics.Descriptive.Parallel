@@ -30,35 +30,36 @@ using System;
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
 
-using Core.Math.Statistics;
+using Core.Math.Statistics.Descriptive.Parallel;
 
 namespace UnitTests.HolisticWare.Core.Math.Statistics
 {
-    public partial class Tests02Frequencies
+    public partial class Tests01MeanAverage
     {
+        Stopwatch sw = null;
         
         [Test()]
-        public void Frequencies()
+        public void MeanAverage()
         {
+            //====================================================================================================
+            // Arrange
             List<int> data01 = new List<int> { 2, 4, 3, 5, 6, 7, 4, 4, 2, 1 };
 
-            IEnumerable<KeyValuePair<int, uint>> frequencies01 = data01.Frequencies();
+            sw = Stopwatch.StartNew();
+            //----------------------------------------------------------------------------------------------------
+            // Act
+            double mean01 = data01.Average();
+            sw.Stop();
+            Console.WriteLine($"List<int>.Average() size={data01.Count} elapsed[ticks]={sw.ElapsedTicks}");
+            sw.Reset();
 
-            CollectionAssert.AreEquivalent
-                                (
-                                    frequencies01,
-                                    new Dictionary<int, uint>()
-                                    {
-                                        { 4, 3 },
-                                        { 2, 2 },
-                                        { 3, 1 },
-                                        { 5, 1 },
-                                        { 6, 1 },
-                                        { 7, 1 },
-                                        { 1, 1 },
-                                    }
-                                );
+            //----------------------------------------------------------------------------------------------------
+            // Assert
+            Assert.AreEqual(3.8, mean01, 0.1);
+            //====================================================================================================
+
             return;
         }
 

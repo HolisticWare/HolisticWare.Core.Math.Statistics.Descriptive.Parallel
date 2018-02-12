@@ -28,11 +28,11 @@
 using NUnit.Framework;
 using System;
 
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-using Core.Math.Statistics;
-using System.Collections;
+using Core.Math.Statistics.Descriptive.Parallel;
 
 namespace UnitTests.HolisticWare.Core.Math.Statistics
 {
@@ -61,30 +61,31 @@ namespace UnitTests.HolisticWare.Core.Math.Statistics
         [Test()]
         public void Data00()
         {
+            // Act
             double x1_average = x1.Average();
             // Assert
             Assert.AreEqual(x1_average, 58.77, 0.01);
 
-            double x1_standard_deviation = x1.StandardDeviationSample();
+			// Act
+			double x1_standard_deviation = x1.StandardDeviationSample();
             // Assert
             Assert.AreEqual(x1_standard_deviation, 17.63, 0.01);
 
-            double x1_min = x1.Min();
+			// Act
+			double x1_min = x1.Min();
             // Assert
             Assert.AreEqual(x1_min, 33.65, 0.01);
 
-            double x1_max = x1.Max();
+			// Act
+			double x1_max = x1.Max();
             // Assert
             Assert.AreEqual(x1_max, 93.51, 0.01);
 
             return;
         }
 
-        [Test()]
-        public void Data01()
-        {
-            // Arrange
-            List<double> x21 = new List<double>
+        // Arrange
+        List<double> x21 = new List<double>
             {
                 87.61,
                 98.51,
@@ -103,6 +104,9 @@ namespace UnitTests.HolisticWare.Core.Math.Statistics
                 82.95,
             };
 
+        [Test()]
+        public void Data01()
+        {
             // Act
             double x21_average = x21.Average();
             // Assert
@@ -162,11 +166,8 @@ namespace UnitTests.HolisticWare.Core.Math.Statistics
             return;
         }
 
-        [Test()]
-        public void Data02()
-        {
-            // Arrange
-            List<double> x22 = new List<double>
+        // Arrange
+        List<double> x22 = new List<double>
             {
                 83.98,
                 94.31,
@@ -185,6 +186,9 @@ namespace UnitTests.HolisticWare.Core.Math.Statistics
                 80.21,
             };
 
+        [Test()]
+        public void Data02()
+        {
             // Act
             double x22_average = x22.Average();
             double x22_standard_deviation = x22.StandardDeviationSample();
@@ -219,11 +223,8 @@ namespace UnitTests.HolisticWare.Core.Math.Statistics
             return;
         }
 
-        [Test()]
-        public void Data03()
-        {
-            // Arrange
-            List<double> x23 = new List<double>
+        // Arrange
+        List<double> x23 = new List<double>
             {
                 85.65,
                 94.62,
@@ -242,6 +243,9 @@ namespace UnitTests.HolisticWare.Core.Math.Statistics
                 82.21,
             };
 
+        [Test()]
+        public void Data03()
+        {
             // Act
             double x23_average = x23.Average();
             Assert.AreEqual(x23_average, 64.32, 0.01);
@@ -284,7 +288,6 @@ namespace UnitTests.HolisticWare.Core.Math.Statistics
 
             return;
         }
-
 
     }
 }

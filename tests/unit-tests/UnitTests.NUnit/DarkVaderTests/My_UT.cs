@@ -30,16 +30,20 @@ using System;
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
 
-using Core.Math.Statistics;
+using Core.Math.Statistics.Descriptive.Parallel;
 
 namespace UnitTests.HolisticWare.Core.Math.Statistics
 {
     public partial class My_UT
     {
+        Stopwatch sw = null;
+
         [Test()]
         public void Data04()
         {
+            //====================================================================================================
             // Arrange
             List<double> x4 = new List<double>
             {
@@ -51,25 +55,46 @@ namespace UnitTests.HolisticWare.Core.Math.Statistics
                 18.2, 14.5, 24.0, 16.5, 16.4, 28.9, 13.5, 13.6, 11.9, 18.2,
             };
 
+            sw = Stopwatch.StartNew();
             // Act
             double x4_average = x4.Average();
+            sw.Stop();
+            Console.WriteLine($"List<int>.Average() size={x4.Count} elapsed[ticks]={sw.ElapsedTicks}");
+            sw.Reset();
+
             // Assert
             Assert.AreEqual(x4_average, 15.93, 0.01);
 
+            sw = Stopwatch.StartNew();
             // Act
             double x4_standard_deviation = x4.StandardDeviationSample();
+            sw.Stop();
+            Console.WriteLine($"List<int>.StandardDeviationSample() size={x4.Count} elapsed[ticks]={sw.ElapsedTicks}");
+            sw.Reset();
+
             // Assert
             Assert.AreEqual(x4_standard_deviation, 3.48, 0.01);
 
+            sw = Stopwatch.StartNew();
             // Act
             double x4_min = x4.Min();
+            sw.Stop();
+            Console.WriteLine($"List<int>.Min() size={x4.Count} elapsed[ticks]={sw.ElapsedTicks}");
+            sw.Reset();
+
             // Assert
             Assert.AreEqual(x4_min, 10.5, 0.01);
 
+            sw = Stopwatch.StartNew();
             // Act
             double x4_max = x4.Max();
+            sw.Stop();
+            Console.WriteLine($"List<int>.Max() size={x4.Count} elapsed[ticks]={sw.ElapsedTicks}");
+            sw.Reset();
+
             // Assert
             Assert.AreEqual(x4_max, 28.9, 0.01);
+            //====================================================================================================
 
             return;
         }        
